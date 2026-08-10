@@ -65,12 +65,21 @@
   .rankings-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
   table.rankings { border-collapse: collapse; width: 100%; font-size: 12px; white-space: nowrap; }
   table.rankings th, table.rankings td { padding: 5px 9px; border-bottom: 1px solid var(--border); text-align: left; }
-  table.rankings thead th { position: sticky; top: 0; background: var(--surface-1); font-size: 11px; color: var(--text-secondary); z-index: 1; }
-  table.rankings tr.filter-row th { top: 27px; padding: 3px 6px; }
-  table.rankings tr.filter-row input { width: 100%; min-width: 56px; font-size: 11px; padding: 3px 5px; border: 1px solid var(--border); border-radius: 4px; background: var(--page); color: var(--text-primary); }
+  table.rankings thead th { position: sticky; top: 0; background: var(--surface-1); font-size: 11px; color: var(--text-secondary); z-index: 2; white-space: nowrap; }
   table.rankings tbody tr:hover { background: var(--surface-1); }
   table.rankings tr.status-invalidated { background: color-mix(in srgb, #fab219 8%, transparent); }
-  table.rankings tr.status-none { color: var(--muted); }
+  .col-toggle { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 9px; padding: 0 0 0 5px; vertical-align: middle; }
+  .col-toggle:hover, .col-toggle.open { color: var(--accent); }
+  .col-toggle.active-filter { color: #2a78d6; }
+  .col-menu { position: absolute; z-index: 50; background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px; padding: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.22); display: flex; flex-direction: column; gap: 6px; min-width: 170px; max-height: 320px; overflow-y: auto; font-size: 12px; }
+  .col-menu button { text-align: left; background: none; border: none; padding: 5px 6px; border-radius: 5px; cursor: pointer; color: var(--text-primary); font-size: 12px; font-weight: 600; }
+  .col-menu button:hover { background: var(--page); }
+  .col-menu input[type="text"], .col-menu input[type="number"] { width: 100%; padding: 4px 6px; border: 1px solid var(--border); border-radius: 5px; background: var(--page); color: var(--text-primary); font-size: 12px; box-sizing: border-box; }
+  .col-menu-range { display: flex; gap: 6px; }
+  .col-menu-sep { border-top: 1px solid var(--border); margin: 2px 0; }
+  .col-menu-list { display: flex; flex-direction: column; gap: 3px; max-height: 160px; overflow-y: auto; }
+  .col-menu-list label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 400; }
+  .col-menu-clear { color: var(--muted) !important; font-weight: 400 !important; border-top: 1px solid var(--border); margin-top: 2px; padding-top: 6px !important; }
 </style>
 
 </head>
@@ -78,6 +87,7 @@
 <h1>FVG Watchlist &mdash; S&P 500 / Nasdaq 100 &mdash; 2026-08-07</h1>
 <p class="subtitle">S&P 500 / Nasdaq 100. Ranked independently within this tab's own candidate pool (50% efficiency ratio over 15 weeks, 50% ATR-normalized proximity to gap edge). Gap zone starts at its C2 (displacement) candle. "TRAPPED" = an opposite-bias gap also currently brackets price. Paired with a 15-month monthly chart; "HTF ALIGNED" = an active monthly gap matching the weekly gap's bias has been tagged (any wick fill &gt; 0%) within the last 12 months — sorted first, not filtered, since nothing is hidden either way.</p>
 <div class="tab-bar"><a class="tab-pill active" href="index.html">S&P 500 / Nasdaq 100</a><a class="tab-pill" href="r1000.html">Russell 1000</a><a class="tab-pill" href="r2000.html">Russell 2000</a><a class="tab-pill" href="futures.html">Futures</a><a class="tab-pill" href="rankings.html">All Rankings</a></div>
+
 <div class="nav-bar"><a class="nav-pill active" href="index.html">2026-08-07 (latest)</a></div>
 <div class="legend">
       <span><span class="swatch" style="background:#0ca30c"></span>Bullish gap / up week</span>
@@ -177,7 +187,7 @@
         <span>CE 199.19</span>
         <span>Fill 41%</span>
         <span>Close 203.91</span>
-        <span>Vol 12.5M/wk</span><span class="score">Score 0.85</span>
+        <span>Vol 12.5M/wk</span><span class="score">Score 0.86</span>
         <span class="ref-week">FVG 2026-07-13</span>
         
       </div>
@@ -288,7 +298,7 @@
         <span>CE 222.10</span>
         <span>Fill 0%</span>
         <span>Close 238.70</span>
-        <span>Vol 7.9M/wk</span><span class="score">Score 0.78</span>
+        <span>Vol 7.9M/wk</span><span class="score">Score 0.79</span>
         <span class="ref-week">FVG 2026-07-27</span>
         
       </div>
@@ -617,7 +627,7 @@
         <span>CE 554.76</span>
         <span>Fill 0%</span>
         <span>Close 562.95</span>
-        <span>Vol 17.9M/wk</span><span class="score">Score 0.87</span>
+        <span>Vol 17.9M/wk</span><span class="score">Score 0.88</span>
         <span class="ref-week">FVG 2026-07-27</span>
         
       </div>
@@ -650,7 +660,7 @@
         <span>CE 173.01</span>
         <span>Fill 0%</span>
         <span>Close 176.56</span>
-        <span>Vol 6.6M/wk</span><span class="score">Score 0.85</span>
+        <span>Vol 6.6M/wk</span><span class="score">Score 0.86</span>
         <span class="ref-week">FVG 2026-07-27</span>
         
       </div>
@@ -971,7 +981,7 @@
         <span>CE 87.60</span>
         <span>Fill 0%</span>
         <span>Close 91.34</span>
-        <span>Vol 35.1M/wk</span><span class="score">Score 0.80</span>
+        <span>Vol 35.1M/wk</span><span class="score">Score 0.81</span>
         <span class="ref-week">FVG 2026-07-27</span>
         <span>vs Bearish 88.08&ndash;91.65</span>
       </div>
@@ -1193,7 +1203,7 @@
         <span>CE 476.30</span>
         <span>Fill 100%</span>
         <span>Close 496.07</span>
-        <span>Vol 7.2M/wk</span><span class="score">Score 0.75</span>
+        <span>Vol 7.2M/wk</span><span class="score">Score 0.76</span>
         <span class="ref-week">FVG 2026-06-22</span>
         
       </div>
@@ -1322,39 +1332,6 @@
         </div>
         <div class="card">
           <div class="card-head">
-            <span class="bias bullish"></span>
-            <span class="ticker">CPT</span>
-            <span class="name">Camden Property Trust</span>
-            
-            
-          </div>
-          <div class="futures-pair">
-              <div class="futures-side">
-      <div class="side-label">Weekly <span class="bias bullish"></span></div>
-      <svg viewBox="0 0 340 190" class="candle-chart" role="img" aria-label="CPT chart"><line x1="44" y1="14.0" x2="328" y2="14.0" class="grid" /><line x1="44" y1="91.0" x2="328" y2="91.0" class="grid" /><line x1="44" y1="168.0" x2="328" y2="168.0" class="grid" /><rect x="218.8" y="67.7" width="109.2" height="17.8" fill="#0ca30c" opacity="0.15" /><line x1="218.8" y1="67.7" x2="328" y2="67.7" stroke="#0ca30c" stroke-width="1" opacity="0.8" /><line x1="218.8" y1="85.4" x2="328" y2="85.4" stroke="#0ca30c" stroke-width="1" opacity="0.8" /><line x1="218.8" y1="76.6" x2="328" y2="76.6" stroke="#0ca30c" stroke-width="1" stroke-dasharray="3 3" opacity="0.9" /><line x1="49.5" y1="65.4" x2="49.5" y2="103.9" stroke="var(--candle-up)" stroke-width="1" /><rect x="46.2" y="88.9" width="6.6" height="10.7" fill="var(--candle-up)" /><line x1="60.4" y1="82.3" x2="60.4" y2="97.2" stroke="var(--candle-down)" stroke-width="1" /><rect x="57.1" y="83.5" width="6.6" height="13.2" fill="var(--candle-down)" /><line x1="71.3" y1="74.9" x2="71.3" y2="95.5" stroke="var(--candle-up)" stroke-width="1" /><rect x="68.0" y="90.0" width="6.6" height="2.8" fill="var(--candle-up)" /><line x1="82.2" y1="83.3" x2="82.2" y2="105.9" stroke="var(--candle-down)" stroke-width="1" /><rect x="79.0" y="90.5" width="6.6" height="10.2" fill="var(--candle-down)" /><line x1="93.2" y1="104.3" x2="93.2" y2="137.0" stroke="var(--candle-down)" stroke-width="1" /><rect x="89.9" y="108.1" width="6.6" height="27.6" fill="var(--candle-down)" /><line x1="104.1" y1="125.6" x2="104.1" y2="158.7" stroke="var(--candle-down)" stroke-width="1" /><rect x="100.8" y="130.5" width="6.6" height="24.4" fill="var(--candle-down)" /><line x1="115.0" y1="141.1" x2="115.0" y2="159.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="111.7" y="145.2" width="6.6" height="12.0" fill="var(--candle-down)" /><line x1="125.9" y1="133.7" x2="125.9" y2="157.3" stroke="var(--candle-up)" stroke-width="1" /><rect x="122.6" y="134.8" width="6.6" height="16.8" fill="var(--candle-up)" /><line x1="136.8" y1="123.2" x2="136.8" y2="137.1" stroke="var(--candle-up)" stroke-width="1" /><rect x="133.6" y="127.7" width="6.6" height="7.0" fill="var(--candle-up)" /><line x1="147.8" y1="116.5" x2="147.8" y2="141.1" stroke="var(--candle-up)" stroke-width="1" /><rect x="144.5" y="119.2" width="6.6" height="10.5" fill="var(--candle-up)" /><line x1="158.7" y1="110.0" x2="158.7" y2="135.0" stroke="var(--candle-down)" stroke-width="1" /><rect x="155.4" y="121.7" width="6.6" height="7.2" fill="var(--candle-down)" /><line x1="169.6" y1="98.5" x2="169.6" y2="132.8" stroke="var(--candle-up)" stroke-width="1" /><rect x="166.3" y="113.0" width="6.6" height="15.9" fill="var(--candle-up)" /><line x1="180.5" y1="103.6" x2="180.5" y2="121.1" stroke="var(--candle-down)" stroke-width="1" /><rect x="177.3" y="116.0" width="6.6" height="1.0" fill="var(--candle-down)" /><line x1="191.5" y1="106.5" x2="191.5" y2="124.4" stroke="var(--candle-down)" stroke-width="1" /><rect x="188.2" y="111.8" width="6.6" height="12.2" fill="var(--candle-down)" /><line x1="202.4" y1="92.0" x2="202.4" y2="122.8" stroke="var(--candle-up)" stroke-width="1" /><rect x="199.1" y="95.1" width="6.6" height="26.8" fill="var(--candle-up)" /><line x1="213.3" y1="85.4" x2="213.3" y2="103.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="210.0" y="91.4" width="6.6" height="9.1" fill="var(--candle-down)" /><line x1="224.2" y1="59.1" x2="224.2" y2="109.9" stroke="var(--candle-up)" stroke-width="1" /><rect x="221.0" y="64.8" width="6.6" height="39.0" fill="var(--candle-up)" /><line x1="235.2" y1="41.3" x2="235.2" y2="67.7" stroke="var(--candle-up)" stroke-width="1" /><rect x="231.9" y="50.8" width="6.6" height="13.4" fill="var(--candle-up)" /><line x1="246.1" y1="47.8" x2="246.1" y2="88.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="242.8" y="52.6" width="6.6" height="33.5" fill="var(--candle-down)" /><line x1="257.0" y1="42.6" x2="257.0" y2="92.2" stroke="var(--candle-up)" stroke-width="1" /><rect x="253.7" y="42.9" width="6.6" height="37.4" fill="var(--candle-up)" /><line x1="267.9" y1="35.5" x2="267.9" y2="57.3" stroke="var(--candle-up)" stroke-width="1" /><rect x="264.6" y="37.4" width="6.6" height="7.6" fill="var(--candle-up)" /><line x1="278.8" y1="22.2" x2="278.8" y2="65.1" stroke="var(--candle-down)" stroke-width="1" /><rect x="275.6" y="39.3" width="6.6" height="23.4" fill="var(--candle-down)" /><line x1="289.8" y1="46.9" x2="289.8" y2="71.5" stroke="var(--candle-down)" stroke-width="1" /><rect x="286.5" y="59.2" width="6.6" height="3.4" fill="var(--candle-down)" /><line x1="300.7" y1="57.1" x2="300.7" y2="71.4" stroke="var(--candle-up)" stroke-width="1" /><rect x="297.4" y="58.2" width="6.6" height="3.1" fill="var(--candle-up)" /><line x1="311.6" y1="39.8" x2="311.6" y2="86.3" stroke="var(--candle-down)" stroke-width="1" /><rect x="308.3" y="59.2" width="6.6" height="16.2" fill="var(--candle-down)" /><line x1="322.5" y1="61.6" x2="322.5" y2="84.7" stroke="var(--candle-up)" stroke-width="1" /><rect x="319.3" y="68.8" width="6.6" height="7.0" fill="var(--candle-up)" /><line x1="44" y1="68.8" x2="328" y2="68.8" class="last-close" /><text x="40" y="27.2" class="axis-label" text-anchor="end">120</text><text x="40" y="162.8" class="axis-label" text-anchor="end">97</text></svg>
-      <div class="stats">
-        <span>Gap 109.11&ndash;112.12</span>
-        <span>CE 110.62</span>
-        <span>Fill 100%</span>
-        <span>Close 111.93</span>
-        <span>Vol 5.5M/wk</span><span class="score">Score 0.74</span>
-        <span class="ref-week">FVG 2026-06-01</span>
-        
-      </div>
-    </div>
-              <div class="futures-side">
-      <div class="side-label">Monthly </div>
-      <svg viewBox="0 0 340 190" class="candle-chart" role="img" aria-label="CPT chart"><line x1="44" y1="14.0" x2="328" y2="14.0" class="grid" /><line x1="44" y1="91.0" x2="328" y2="91.0" class="grid" /><line x1="44" y1="168.0" x2="328" y2="168.0" class="grid" /><line x1="53.5" y1="22.3" x2="53.5" y2="74.5" stroke="var(--candle-up)" stroke-width="1" /><rect x="47.8" y="43.5" width="11.4" height="18.7" fill="var(--candle-up)" /><line x1="72.4" y1="35.2" x2="72.4" y2="80.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="66.7" y="48.9" width="11.4" height="21.2" fill="var(--candle-down)" /><line x1="91.3" y1="52.3" x2="91.3" y2="92.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="85.7" y="71.4" width="11.4" height="18.1" fill="var(--candle-down)" /><line x1="110.3" y1="72.9" x2="110.3" y2="121.8" stroke="var(--candle-up)" stroke-width="1" /><rect x="104.6" y="74.1" width="11.4" height="8.6" fill="var(--candle-up)" /><line x1="129.2" y1="72.5" x2="129.2" y2="112.7" stroke="var(--candle-down)" stroke-width="1" /><rect x="123.5" y="79.2" width="11.4" height="23.7" fill="var(--candle-down)" /><line x1="148.1" y1="101.1" x2="148.1" y2="156.2" stroke="var(--candle-down)" stroke-width="1" /><rect x="142.5" y="103.8" width="11.4" height="39.6" fill="var(--candle-down)" /><line x1="167.1" y1="101.8" x2="167.1" y2="152.3" stroke="var(--candle-up)" stroke-width="1" /><rect x="161.4" y="105.4" width="11.4" height="44.5" fill="var(--candle-up)" /><line x1="186.0" y1="80.3" x2="186.0" y2="131.7" stroke="var(--candle-up)" stroke-width="1" /><rect x="180.3" y="84.6" width="11.4" height="22.8" fill="var(--candle-up)" /><line x1="204.9" y1="76.1" x2="204.9" y2="109.0" stroke="var(--candle-down)" stroke-width="1" /><rect x="199.3" y="87.2" width="11.4" height="3.2" fill="var(--candle-down)" /><line x1="223.9" y1="71.2" x2="223.9" y2="113.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="218.2" y="90.8" width="11.4" height="3.4" fill="var(--candle-down)" /><line x1="242.8" y1="88.0" x2="242.8" y2="159.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="237.1" y="94.7" width="11.4" height="58.8" fill="var(--candle-down)" /><line x1="261.7" y1="102.3" x2="261.7" y2="154.9" stroke="var(--candle-up)" stroke-width="1" /><rect x="256.1" y="112.7" width="11.4" height="37.2" fill="var(--candle-up)" /><line x1="280.7" y1="90.0" x2="280.7" y2="126.6" stroke="var(--candle-up)" stroke-width="1" /><rect x="275.0" y="104.1" width="11.4" height="2.8" fill="var(--candle-up)" /><line x1="299.6" y1="47.6" x2="299.6" y2="113.0" stroke="var(--candle-up)" stroke-width="1" /><rect x="293.9" y="60.2" width="11.4" height="47.1" fill="var(--candle-up)" /><line x1="318.5" y1="30.7" x2="318.5" y2="90.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="312.9" y="57.9" width="11.4" height="22.7" fill="var(--candle-down)" /><line x1="44" y1="80.6" x2="328" y2="80.6" class="last-close" /><text x="40" y="27.2" class="axis-label" text-anchor="end">121</text><text x="40" y="162.8" class="axis-label" text-anchor="end">97</text></svg>
-      <div class="stats">
-        <span>No active gap</span>
-        <span>Close 110.81</span>
-        
-      </div>
-    </div>
-            </div>
-        </div>
-        <div class="card">
-          <div class="card-head">
             <span class="bias bearish"></span>
             <span class="ticker">ELV</span>
             <span class="name">Elevance Health</span>
@@ -1381,6 +1358,39 @@
       <div class="stats">
         <span>No active gap</span>
         <span>Close 375.84</span>
+        
+      </div>
+    </div>
+            </div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <span class="bias bullish"></span>
+            <span class="ticker">CPT</span>
+            <span class="name">Camden Property Trust</span>
+            
+            
+          </div>
+          <div class="futures-pair">
+              <div class="futures-side">
+      <div class="side-label">Weekly <span class="bias bullish"></span></div>
+      <svg viewBox="0 0 340 190" class="candle-chart" role="img" aria-label="CPT chart"><line x1="44" y1="14.0" x2="328" y2="14.0" class="grid" /><line x1="44" y1="91.0" x2="328" y2="91.0" class="grid" /><line x1="44" y1="168.0" x2="328" y2="168.0" class="grid" /><rect x="218.8" y="67.7" width="109.2" height="17.8" fill="#0ca30c" opacity="0.15" /><line x1="218.8" y1="67.7" x2="328" y2="67.7" stroke="#0ca30c" stroke-width="1" opacity="0.8" /><line x1="218.8" y1="85.4" x2="328" y2="85.4" stroke="#0ca30c" stroke-width="1" opacity="0.8" /><line x1="218.8" y1="76.6" x2="328" y2="76.6" stroke="#0ca30c" stroke-width="1" stroke-dasharray="3 3" opacity="0.9" /><line x1="49.5" y1="65.4" x2="49.5" y2="103.9" stroke="var(--candle-up)" stroke-width="1" /><rect x="46.2" y="88.9" width="6.6" height="10.7" fill="var(--candle-up)" /><line x1="60.4" y1="82.3" x2="60.4" y2="97.2" stroke="var(--candle-down)" stroke-width="1" /><rect x="57.1" y="83.5" width="6.6" height="13.2" fill="var(--candle-down)" /><line x1="71.3" y1="74.9" x2="71.3" y2="95.5" stroke="var(--candle-up)" stroke-width="1" /><rect x="68.0" y="90.0" width="6.6" height="2.8" fill="var(--candle-up)" /><line x1="82.2" y1="83.3" x2="82.2" y2="105.9" stroke="var(--candle-down)" stroke-width="1" /><rect x="79.0" y="90.5" width="6.6" height="10.2" fill="var(--candle-down)" /><line x1="93.2" y1="104.3" x2="93.2" y2="137.0" stroke="var(--candle-down)" stroke-width="1" /><rect x="89.9" y="108.1" width="6.6" height="27.6" fill="var(--candle-down)" /><line x1="104.1" y1="125.6" x2="104.1" y2="158.7" stroke="var(--candle-down)" stroke-width="1" /><rect x="100.8" y="130.5" width="6.6" height="24.4" fill="var(--candle-down)" /><line x1="115.0" y1="141.1" x2="115.0" y2="159.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="111.7" y="145.2" width="6.6" height="12.0" fill="var(--candle-down)" /><line x1="125.9" y1="133.7" x2="125.9" y2="157.3" stroke="var(--candle-up)" stroke-width="1" /><rect x="122.6" y="134.8" width="6.6" height="16.8" fill="var(--candle-up)" /><line x1="136.8" y1="123.2" x2="136.8" y2="137.1" stroke="var(--candle-up)" stroke-width="1" /><rect x="133.6" y="127.7" width="6.6" height="7.0" fill="var(--candle-up)" /><line x1="147.8" y1="116.5" x2="147.8" y2="141.1" stroke="var(--candle-up)" stroke-width="1" /><rect x="144.5" y="119.2" width="6.6" height="10.5" fill="var(--candle-up)" /><line x1="158.7" y1="110.0" x2="158.7" y2="135.0" stroke="var(--candle-down)" stroke-width="1" /><rect x="155.4" y="121.7" width="6.6" height="7.2" fill="var(--candle-down)" /><line x1="169.6" y1="98.5" x2="169.6" y2="132.8" stroke="var(--candle-up)" stroke-width="1" /><rect x="166.3" y="113.0" width="6.6" height="15.9" fill="var(--candle-up)" /><line x1="180.5" y1="103.6" x2="180.5" y2="121.1" stroke="var(--candle-down)" stroke-width="1" /><rect x="177.3" y="116.0" width="6.6" height="1.0" fill="var(--candle-down)" /><line x1="191.5" y1="106.5" x2="191.5" y2="124.4" stroke="var(--candle-down)" stroke-width="1" /><rect x="188.2" y="111.8" width="6.6" height="12.2" fill="var(--candle-down)" /><line x1="202.4" y1="92.0" x2="202.4" y2="122.8" stroke="var(--candle-up)" stroke-width="1" /><rect x="199.1" y="95.1" width="6.6" height="26.8" fill="var(--candle-up)" /><line x1="213.3" y1="85.4" x2="213.3" y2="103.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="210.0" y="91.4" width="6.6" height="9.1" fill="var(--candle-down)" /><line x1="224.2" y1="59.1" x2="224.2" y2="109.9" stroke="var(--candle-up)" stroke-width="1" /><rect x="221.0" y="64.8" width="6.6" height="39.0" fill="var(--candle-up)" /><line x1="235.2" y1="41.3" x2="235.2" y2="67.7" stroke="var(--candle-up)" stroke-width="1" /><rect x="231.9" y="50.8" width="6.6" height="13.4" fill="var(--candle-up)" /><line x1="246.1" y1="47.8" x2="246.1" y2="88.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="242.8" y="52.6" width="6.6" height="33.5" fill="var(--candle-down)" /><line x1="257.0" y1="42.6" x2="257.0" y2="92.2" stroke="var(--candle-up)" stroke-width="1" /><rect x="253.7" y="42.9" width="6.6" height="37.4" fill="var(--candle-up)" /><line x1="267.9" y1="35.5" x2="267.9" y2="57.3" stroke="var(--candle-up)" stroke-width="1" /><rect x="264.6" y="37.4" width="6.6" height="7.6" fill="var(--candle-up)" /><line x1="278.8" y1="22.2" x2="278.8" y2="65.1" stroke="var(--candle-down)" stroke-width="1" /><rect x="275.6" y="39.3" width="6.6" height="23.4" fill="var(--candle-down)" /><line x1="289.8" y1="46.9" x2="289.8" y2="71.5" stroke="var(--candle-down)" stroke-width="1" /><rect x="286.5" y="59.2" width="6.6" height="3.4" fill="var(--candle-down)" /><line x1="300.7" y1="57.1" x2="300.7" y2="71.4" stroke="var(--candle-up)" stroke-width="1" /><rect x="297.4" y="58.2" width="6.6" height="3.1" fill="var(--candle-up)" /><line x1="311.6" y1="39.8" x2="311.6" y2="86.3" stroke="var(--candle-down)" stroke-width="1" /><rect x="308.3" y="59.2" width="6.6" height="16.2" fill="var(--candle-down)" /><line x1="322.5" y1="61.6" x2="322.5" y2="84.7" stroke="var(--candle-up)" stroke-width="1" /><rect x="319.3" y="68.8" width="6.6" height="7.0" fill="var(--candle-up)" /><line x1="44" y1="68.8" x2="328" y2="68.8" class="last-close" /><text x="40" y="27.2" class="axis-label" text-anchor="end">120</text><text x="40" y="162.8" class="axis-label" text-anchor="end">97</text></svg>
+      <div class="stats">
+        <span>Gap 109.11&ndash;112.12</span>
+        <span>CE 110.62</span>
+        <span>Fill 100%</span>
+        <span>Close 111.93</span>
+        <span>Vol 5.5M/wk</span><span class="score">Score 0.74</span>
+        <span class="ref-week">FVG 2026-06-01</span>
+        
+      </div>
+    </div>
+              <div class="futures-side">
+      <div class="side-label">Monthly </div>
+      <svg viewBox="0 0 340 190" class="candle-chart" role="img" aria-label="CPT chart"><line x1="44" y1="14.0" x2="328" y2="14.0" class="grid" /><line x1="44" y1="91.0" x2="328" y2="91.0" class="grid" /><line x1="44" y1="168.0" x2="328" y2="168.0" class="grid" /><line x1="53.5" y1="22.3" x2="53.5" y2="74.5" stroke="var(--candle-up)" stroke-width="1" /><rect x="47.8" y="43.5" width="11.4" height="18.7" fill="var(--candle-up)" /><line x1="72.4" y1="35.2" x2="72.4" y2="80.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="66.7" y="48.9" width="11.4" height="21.2" fill="var(--candle-down)" /><line x1="91.3" y1="52.3" x2="91.3" y2="92.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="85.7" y="71.4" width="11.4" height="18.1" fill="var(--candle-down)" /><line x1="110.3" y1="72.9" x2="110.3" y2="121.8" stroke="var(--candle-up)" stroke-width="1" /><rect x="104.6" y="74.1" width="11.4" height="8.6" fill="var(--candle-up)" /><line x1="129.2" y1="72.5" x2="129.2" y2="112.7" stroke="var(--candle-down)" stroke-width="1" /><rect x="123.5" y="79.2" width="11.4" height="23.7" fill="var(--candle-down)" /><line x1="148.1" y1="101.1" x2="148.1" y2="156.2" stroke="var(--candle-down)" stroke-width="1" /><rect x="142.5" y="103.8" width="11.4" height="39.6" fill="var(--candle-down)" /><line x1="167.1" y1="101.8" x2="167.1" y2="152.3" stroke="var(--candle-up)" stroke-width="1" /><rect x="161.4" y="105.4" width="11.4" height="44.5" fill="var(--candle-up)" /><line x1="186.0" y1="80.3" x2="186.0" y2="131.7" stroke="var(--candle-up)" stroke-width="1" /><rect x="180.3" y="84.6" width="11.4" height="22.8" fill="var(--candle-up)" /><line x1="204.9" y1="76.1" x2="204.9" y2="109.0" stroke="var(--candle-down)" stroke-width="1" /><rect x="199.3" y="87.2" width="11.4" height="3.2" fill="var(--candle-down)" /><line x1="223.9" y1="71.2" x2="223.9" y2="113.6" stroke="var(--candle-down)" stroke-width="1" /><rect x="218.2" y="90.8" width="11.4" height="3.4" fill="var(--candle-down)" /><line x1="242.8" y1="88.0" x2="242.8" y2="159.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="237.1" y="94.7" width="11.4" height="58.8" fill="var(--candle-down)" /><line x1="261.7" y1="102.3" x2="261.7" y2="154.9" stroke="var(--candle-up)" stroke-width="1" /><rect x="256.1" y="112.7" width="11.4" height="37.2" fill="var(--candle-up)" /><line x1="280.7" y1="90.0" x2="280.7" y2="126.6" stroke="var(--candle-up)" stroke-width="1" /><rect x="275.0" y="104.1" width="11.4" height="2.8" fill="var(--candle-up)" /><line x1="299.6" y1="47.6" x2="299.6" y2="113.0" stroke="var(--candle-up)" stroke-width="1" /><rect x="293.9" y="60.2" width="11.4" height="47.1" fill="var(--candle-up)" /><line x1="318.5" y1="30.7" x2="318.5" y2="90.8" stroke="var(--candle-down)" stroke-width="1" /><rect x="312.9" y="57.9" width="11.4" height="22.7" fill="var(--candle-down)" /><line x1="44" y1="80.6" x2="328" y2="80.6" class="last-close" /><text x="40" y="27.2" class="axis-label" text-anchor="end">121</text><text x="40" y="162.8" class="axis-label" text-anchor="end">97</text></svg>
+      <div class="stats">
+        <span>No active gap</span>
+        <span>Close 110.81</span>
         
       </div>
     </div>
